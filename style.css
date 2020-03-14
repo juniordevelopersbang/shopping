@@ -1,6 +1,6 @@
 .macbook{
-    width: 500px;
-    display: inline;
+    width: 690px;
+    display: flex;
     height: auto;
     padding-bottom: 2rem;
     
@@ -16,6 +16,10 @@
 
 .price {
     display: inline;
-    text-align: center;
+    text-align: left;
     
+}
+
+* {
+    font-family: 'Black Han Sans', sans-serif;
 }

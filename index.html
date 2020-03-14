@@ -11,8 +11,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  
+
   <body>
     <div class="container">
       <div class="text-center">
@@ -21,17 +25,16 @@
           class="rounded macbook"
         />
       </div>
-      <p class="title">
+      <span class="title">
         맥북을 팝니다.
-      </p>
-      <p class="price"> 
+      </span>
+      <span class="price">
         가격: 3000000만원/1개
+      </span>
+      <p class="explain">
+        맥북은 이쁜데 너무 비싸요. 왜 이렇게 비싼지 모르겠어요 램 업그레이드
+        하는데도 20만원을 달래요 미쳤나봐요.
       </p>
-      <p class="explain"> 
-        맥북은 이쁜데 너무 비싸요. 왜 이렇게 비싼지 모르겠어요 램 업그레이드 하는데도 20만원을 달래요
-        미쳤나봐요.
-      </p>
-
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -80,8 +83,9 @@
           aria-describedby="basic-addon1"
         />
       </div>
-      <button type="button" class="btn btn-primary">주문하기</button>
-
+      <div class="text-center">
+        <button type="button" class="btn btn-primary">주문하기</button>
+      </div>
       <script
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

@@ -10,30 +10,93 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
+  
   <body>
     <div class="container">
-      <img class="mac"
-        src="https://byline.network/wp-content/uploads/2017/07/mac_1-1024x684.jpg"
-        alt="Italian Trulli"
-      />
-    </div>
+      <div class="text-center">
+        <img
+          src="http://www.bloter.net/wp-content/uploads/2018/10/8917C2AF-B17B-4119-BB41-A261A43E9BFB.jpg"
+          class="rounded macbook"
+        />
+      </div>
+      <p class="title">
+        맥북을 팝니다.
+      </p>
+      <p class="price"> 
+        가격: 3000000만원/1개
+      </p>
+      <p class="explain"> 
+        맥북은 이쁜데 너무 비싸요. 왜 이렇게 비싼지 모르겠어요 램 업그레이드 하는데도 20만원을 달래요
+        미쳤나봐요.
+      </p>
 
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          aria-label=""
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">수량</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>---수량을 선택하세요---</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주소</span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          aria-label=""
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">전화번호</span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          aria-label=""
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <button type="button" class="btn btn-primary">주문하기</button>
+
+      <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"
+      ></script>
+    </div>
   </body>
 </html>

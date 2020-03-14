@@ -1,6 +1,21 @@
-.mac{
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
+.macbook{
     width: 500px;
+    display: inline;
+    height: auto;
+    padding-bottom: 2rem;
+    
+}
+
+.title{
+    font-size: 50px;
+}
+
+.container{
+    max-width: 720px;
+}
+
+.price {
+    display: inline;
+    text-align: center;
+    
 }

@@ -41,6 +41,7 @@
           <span class="input-group-text" id="basic-addon1">주문자 이름</span>
         </div>
         <input
+          id="name"
           type="text"
           class="form-control"
           placeholder=""
@@ -52,8 +53,8 @@
         <div class="input-group-prepend">
           <label class="input-group-text" for="inputGroupSelect01">수량</label>
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
-          <option selected>---수량을 선택하세요---</option>
+        <select id="count" class="custom-select" id="inputGroupSelect01">
+          <option value="0">---수량을 선택하세요---</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -64,6 +65,7 @@
           <span class="input-group-text" id="basic-addon1">주소</span>
         </div>
         <input
+          id="address"
           type="text"
           class="form-control"
           placeholder=""
@@ -76,6 +78,7 @@
           <span class="input-group-text" id="basic-addon1">전화번호</span>
         </div>
         <input
+          id="number"
           type="text"
           class="form-control"
           placeholder=""
@@ -84,7 +87,9 @@
         />
       </div>
       <div class="text-center">
-        <button type="button" class="btn btn-primary">주문하기</button>
+        <button onclick="order()" type="button" class="btn btn-primary">
+          주문하기
+        </button>
       </div>
       <script
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -101,6 +106,25 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"
       ></script>
+      <script>
+        function order() {
+          let name = $("#name").val();
+          let count = document.getElementById("count");
+
+          let address = $("#address").val();
+          let number = $("#number").val();
+
+          if (name === "") {
+            alert("이름을 입력하세요!");
+          } else if (count.options[count.selectedIndex].value === "0") {
+            alert("수량을 선택하세요!");
+          } else if (address === "") {
+            alert("주소를 입력하세요!");
+          } else if (number === "") {
+            alert("전화번호를 입력하세요!");
+          }
+        }
+      </script>
     </div>
   </body>
 </html>

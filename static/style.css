@@ -22,3 +22,11 @@
 * {
     font-family: 'Black Han Sans', sans-serif;
 }
+
+.button {
+    margin-bottom: 20px;
+}
+
+.meta_info {
+    width: 20%;
+  }

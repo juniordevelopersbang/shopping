@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>macbook pro</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function order() {
+        let name = $("#name").val();
+        let count = $("#count").val();
+        let address = $("#address").val();
+        let phone = $("#phone").val();
+
+        if (name === "") {
+          alert("이름을 입력하세요!");
+          $("#name").focus();
+          return;
+        } else if (count === "0") {
+          alert("수량을 선택하세요!");
+          $("#count").focus();
+          return;
+        } else if (address === "") {
+          alert("주소를 입력하세요!");
+          $("#address").focus();
+          return;
+        } else if (phone === "") {
+          alert("전화번호를 입력하세요!");
+          $("#phone").focus();
+          return;
+        }
+
+        $.ajax({
+          type: "POST",
+          url: "/orders",
+          data: { name_give: name, count_give: count, address_give: address, phone_give: phone},
+          success: function(response) {
+            if (response["result"] == "success") {
+              alert(response["msg"]);
+               $("#name").val('');
+               $("#count").val('');
+               $("#address").val('');
+               $("#phone").val('');
+               window.location.reload();
+
+            }
+          }
+        });
+
+        $(document).ready(function() {
+          $("#orders-box").html('');
+          listing();
+        });
+      }
+
+      function listing() {
+        $.ajax({
+          type: "GET",
+          url: "/orders",
+          data: {},
+          success: function(response) {
+            if (response["result"] == "success") {
+              alert("hi")
+              let orders = response["orders"];
+              for (var i = 0; i < orders.length; i++) {
+                make_order(
+                  orders[i]["name"],
+                  orders[i]["count"],
+                  orders[i]["address"],
+                  orders[i]["phone"]
+                );
+              }
+            } else {
+              alert("주문을 받아오지 못했습니다.");
+            }
+          }
+        });
+      }
+
+      function make_order() {
+        let temp_html = '<tr>\
+                            <td>'+ name + '</td>\
+                            <td>'+ count + '</td>\
+                            <td>'+ address + '</td>\
+                            <td>'+ phone + '</td>\
+                          </tr>';
+        $('#orders-box').append(temp_html);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="text-center">
+        <img
+          src="http://www.bloter.net/wp-content/uploads/2018/10/8917C2AF-B17B-4119-BB41-A261A43E9BFB.jpg"
+          class="rounded macbook"
+        />
+      </div>
+      <span class="title">
+        맥북을 팝니다.
+      </span>
+      <span class="price">
+        가격: 3000000만원/1개
+      </span>
+      <p class="explain">
+        맥북은 이쁜데 너무 비싸요. 왜 이렇게 비싼지 모르겠어요 램 업그레이드
+        하는데도 20만원을 달래요 미쳤나봐요.
+      </p>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+        </div>
+        <input
+          id="name"
+          type="text"
+          class="form-control"
+          placeholder=""
+          aria-label=""
+          aria-describedby="basic-addon1"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">수량</label>
+        </div>
+        <select id="count" class="custom-select" id="inputGroupSelect01">
+          <option value="0">---수량을 선택하세요---</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon2">주소</span>
+        </div>
+        <input
+          id="address"
+          type="text"
+          class="form-control"
+          placeholder=""
+          aria-label=""
+          aria-describedby="basic-addon2"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">전화번호</span>
+        </div>
+        <input
+          id="phone"
+          type="text"
+          class="form-control"
+          placeholder=""
+          aria-label=""
+          aria-describedby="basic-addon3"
+        />
+      </div>
+      <div class="text-center">
+        <button onclick="order()" type="button" class="btn btn-primary button">
+          주문하기
+        </button>
+      </div>
+        <div class="orders">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th class="meta_info" scope="col">이름</th>
+                      <th class="meta_info" scope="col">수량</th>
+                      <th class="meta_info" scope="col">주소</th>
+                      <th class="meta_info" scope="col">전화번호</th>
+
+                  </tr>
+              </thead>
+              <tbody id="orders-box">
+                  <tr>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>@mdo</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  </body>
+</html>

@@ -11,18 +11,15 @@
       crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sunflower&display=swap"
       rel="stylesheet"
     />
     <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
       crossorigin="anonymous"
     ></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -34,6 +31,11 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      function isCellPhone(p) {
+        var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+        return regExp.test(p);
+      }
+
       function order() {
         let name = $("#name").val();
         let count = $("#count").val();
@@ -56,27 +58,35 @@
           alert("전화번호를 입력하세요!");
           $("#phone").focus();
           return;
+        } else if (!isCellPhone(phone)) {
+          alert(
+            "휴대폰번호 입력 형식이 틀립니다. \n 010-0000-0000으로 입력해주세요"
+          );
+          return;
         }
 
         $.ajax({
           type: "POST",
           url: "/orders",
-          data: { name_give: name, count_give: count, address_give: address, phone_give: phone},
-          success: function(response) {
+          data: {
+            name_give: name,
+            count_give: count,
+            address_give: address,
+            phone_give: phone,
+          },
+          success: function (response) {
             if (response["result"] == "success") {
               alert(response["msg"]);
-               $("#name").val('');
-               $("#count").val('');
-               $("#address").val('');
-               $("#phone").val('');
-               window.location.reload();
-
+              $("#name").val("");
+              $("#count").val("");
+              $("#address").val("");
+              $("#phone").val("");
             }
-          }
+          },
         });
 
-        $(document).ready(function() {
-          $("#orders-box").html('');
+        $(document).ready(function () {
+          $("#orders-box").html("");
           listing();
         });
       }
@@ -86,9 +96,8 @@
           type: "GET",
           url: "/orders",
           data: {},
-          success: function(response) {
+          success: function (response) {
             if (response["result"] == "success") {
-              alert("hi")
               let orders = response["orders"];
               for (var i = 0; i < orders.length; i++) {
                 make_order(
@@ -101,20 +110,57 @@
             } else {
               alert("주문을 받아오지 못했습니다.");
             }
-          }
+          },
         });
       }
 
-      function make_order() {
-        let temp_html = '<tr>\
-                            <td>'+ name + '</td>\
-                            <td>'+ count + '</td>\
-                            <td>'+ address + '</td>\
-                            <td>'+ phone + '</td>\
-                          </tr>';
-        $('#orders-box').append(temp_html);
+      function make_order(name, count, address, phone) {
+        let temp_html =
+          "<tr>\
+            <td>" +
+          name +
+          "</td>\
+            <td>" +
+          count +
+          "</td>\
+            <td>" +
+          address +
+          "</td>\
+            <td>" +
+          phone +
+          "</td>\
+          </tr>";
+        $("#orders-box").append(temp_html);
       }
     </script>
+    <style>
+      .macbook {
+        width: 690px;
+        height: auto;
+        padding-bottom: 2rem;
+      }
+
+      .title {
+        font-size: 50px;
+      }
+
+      .container {
+        max-width: 720px;
+      }
+
+      .price {
+        display: inline;
+        text-align: left;
+      }
+
+      * {
+        font-family: "Sunflower", sans-serif;
+      }
+
+      .button {
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
 
   <body>
@@ -191,26 +237,26 @@
           주문하기
         </button>
       </div>
-        <div class="orders">
-          <table class="table">
-              <thead>
-                  <tr>
-                      <th class="meta_info" scope="col">이름</th>
-                      <th class="meta_info" scope="col">수량</th>
-                      <th class="meta_info" scope="col">주소</th>
-                      <th class="meta_info" scope="col">전화번호</th>
-
-                  </tr>
-              </thead>
-              <tbody id="orders-box">
-                  <tr>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>@mdo</td>
-                  </tr>
-              </tbody>
-          </table>
+      <div class="orders">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="meta_info" scope="col">이름</th>
+              <th class="meta_info" scope="col">수량</th>
+              <th class="meta_info" scope="col">주소</th>
+              <th class="meta_info" scope="col">전화번호</th>
+            </tr>
+          </thead>
+          <tbody id="orders-box">
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-  </div>
+    </div>
   </body>
 </html>

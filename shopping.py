@@ -36,7 +36,7 @@ def write_orders():
 
 @app.route('/orders', methods=['GET'])
 def read_orders():
-    orders = list(db.orders.find({}, {'_id': 0}))
+    orders = list(db.orders.find({},{'_id':0}))
     return jsonify({'result': 'success', 'orders': orders})
 
 
